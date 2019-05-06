@@ -6,7 +6,7 @@
 <title>
   Puppet Class: sensuclassic::package
   
-    &mdash; Documentation by YARD 0.9.18
+    &mdash; Documentation by YARD 0.9.19
   
 </title>
 
@@ -639,7 +639,11 @@ ruby, is not recommended.</p>
 334
 335
 336
-337</pre>
+337
+338
+339
+340
+341</pre>
       </td>
       <td>
         <pre class="code"><span class="info file"># File 'manifests/package.pp', line 41</span>
@@ -739,7 +743,11 @@ class sensuclassic::package (
         $os_release = $facts[&#39;os&#39;][&#39;release&#39;][&#39;major&#39;]
         # e.g. &#39;2012 R2&#39; =&gt; &#39;2012r2&#39;
         $pkg_url_dir = regsubst($os_release, &#39;^(\d+)\s*[rR](\d+)&#39;, &#39;\\1r\\2&#39;)
-        $pkg_arch = $facts[&#39;os&#39;][&#39;architecture&#39;]
+        if $facts[&#39;os&#39;][&#39;architecture&#39;] {
+          $pkg_arch = $facts[&#39;os&#39;][&#39;architecture&#39;]
+        } else {
+          $pkg_arch = $facts[&#39;architecture&#39;]
+        }
         $pkg_url = &quot;${sensuclassic::windows_repo_prefix}/${pkg_url_dir}/sensu-${pkg_url_version}-${pkg_arch}.msi&quot;
       }
 

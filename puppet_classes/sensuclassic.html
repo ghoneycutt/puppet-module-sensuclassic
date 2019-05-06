@@ -6,7 +6,7 @@
 <title>
   Puppet Class: sensuclassic
   
-    &mdash; Documentation by YARD 0.9.18
+    &mdash; Documentation by YARD 0.9.19
   
 </title>
 
@@ -1239,7 +1239,9 @@ feature.</p>
       
       
         &mdash;
-        <div class='inline'><p>Custom client variables.</p>
+        <div class='inline'><p>Custom client variables.
+Any key that is used by a property of sensu_client_config
+will be ignored and should not be included in this parameter.</p>
 </div>
       
     </li>
@@ -2522,8 +2524,6 @@ Note: This has effect only on Sensu Enterprise.</p>
         <pre class="lines">
 
 
-349
-350
 351
 352
 353
@@ -2885,10 +2885,12 @@ Note: This has effect only on Sensu Enterprise.</p>
 709
 710
 711
-712</pre>
+712
+713
+714</pre>
       </td>
       <td>
-        <pre class="code"><span class="info file"># File 'manifests/init.pp', line 349</span>
+        <pre class="code"><span class="info file"># File 'manifests/init.pp', line 351</span>
 
 class sensuclassic (
   Pattern[/^absent$/, /^installed$/, /^latest$/, /^present$/, /^[\d\.\-el]+$/] $version = &#39;installed&#39;,
