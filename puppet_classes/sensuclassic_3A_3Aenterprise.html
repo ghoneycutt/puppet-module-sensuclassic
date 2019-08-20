@@ -400,7 +400,14 @@ ruby, is not recommended.</p>
 97
 98
 99
-100</pre>
+100
+101
+102
+103
+104
+105
+106
+107</pre>
       </td>
       <td>
         <pre class="code"><span class="info file"># File 'manifests/enterprise.pp', line 37</span>
@@ -465,6 +472,13 @@ class sensuclassic::enterprise (
           Class[&#39;sensuclassic::rabbitmq::config&#39;],
           Class[&#39;sensuclassic::package&#39;],
         ],
+      }
+
+      exec { &#39;sensu-enterprise-reload&#39;:
+        path        =&gt; &#39;/usr/bin:/bin:/usr/sbin:/sbin&#39;,
+        command     =&gt; &#39;service sensu-enterprise reload&#39;,
+        refreshonly =&gt; true,
+        require     =&gt; Service[&#39;sensu-enterprise&#39;],
       }
     }
   }

@@ -3130,7 +3130,7 @@ class sensuclassic (
   }
 
   if $enterprise and $manage_services {
-    $enterprise_service = Service[&#39;sensu-enterprise&#39;]
+    $enterprise_service = Exec[&#39;sensu-enterprise-reload&#39;]
   } else {
     $enterprise_service = undef
   }
