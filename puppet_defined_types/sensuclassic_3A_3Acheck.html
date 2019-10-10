@@ -91,27 +91,6 @@
   
     <li>
       
-        <span class='name'>check_name</span>
-      
-      
-        <span class='type'>(<tt>Optional[String]</tt>)</span>
-      
-      
-        <em class="default">(defaults to: <tt>undef</tt>)</em>
-      
-      
-        &mdash;
-        <div class='inline'><p>The name of the check.
-If not specified, defaults to the name of the resource. Overriding it
-allows the check name to differ from the check configuration filename,
-useful when having checks of the same name from different proxy clients.
-(see the &#39;source&#39; parameter)</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
         <span class='name'>command</span>
       
       
@@ -636,6 +615,12 @@ of the Hash value.</p>
         <pre class="lines">
 
 
+104
+105
+106
+107
+108
+109
 110
 111
 112
@@ -799,24 +784,12 @@ of the Hash value.</p>
 270
 271
 272
-273
-274
-275
-276
-277
-278
-279
-280
-281
-282
-283
-284</pre>
+273</pre>
       </td>
       <td>
-        <pre class="code"><span class="info file"># File 'manifests/check.pp', line 110</span>
+        <pre class="code"><span class="info file"># File 'manifests/check.pp', line 104</span>
 
 define sensuclassic::check (
-  Optional[String] $check_name = undef,
   Optional[String] $command = undef,
   Enum[&#39;present&#39;,&#39;absent&#39;] $ensure = &#39;present&#39;,
   Optional[String] $type = undef,
@@ -868,11 +841,7 @@ define sensuclassic::check (
     }
   }
 
-  $check_file_name = regsubst(regsubst($name, &#39; &#39;, &#39;_&#39;, &#39;G&#39;), &#39;[\(\)]&#39;, &#39;&#39;, &#39;G&#39;)
-  $check_config_name = $check_name ? {
-    undef   =&gt; $check_file_name,
-    default =&gt; $check_name,
-  }
+  $check_name = regsubst(regsubst($name, &#39; &#39;, &#39;_&#39;, &#39;G&#39;), &#39;[\(\)]&#39;, &#39;&#39;, &#39;G&#39;)
 
   # If cron is specified, interval should not be written to the configuration
   if $cron and $cron != &#39;absent&#39; {
@@ -922,7 +891,7 @@ define sensuclassic::check (
     }
   }
 
-  # This Hash map will ultimately exist at `{&quot;checks&quot; =&gt; {&quot;$check_config_name&quot; =&gt;
+  # This Hash map will ultimately exist at `{&quot;checks&quot; =&gt; {&quot;$check_name&quot; =&gt;
   # $check_config}}`
   $check_config_start = {
     type                =&gt; $type,
@@ -970,7 +939,7 @@ define sensuclassic::check (
 
   # Merge together the &quot;checks&quot; scope with any arbitrary config specified via
   # `content`.
-  $checks_scope_start = { $check_config_name =&gt; $check_config }
+  $checks_scope_start = { $check_name =&gt; $check_config }
   if $content[&#39;checks&#39;] == undef {
     $checks_scope = { &#39;checks&#39; =&gt; $checks_scope_start }
   } else {
@@ -981,7 +950,7 @@ define sensuclassic::check (
   # on top of any arbitrary plugin and extension configuration in $content.
   $content_real = $content + $checks_scope
 
-  sensuclassic::write_json { &quot;${sensuclassic::conf_dir}/checks/${check_file_name}.json&quot;:
+  sensuclassic::write_json { &quot;${sensuclassic::conf_dir}/checks/${check_name}.json&quot;:
     ensure      =&gt; $ensure,
     content     =&gt; $content_real,
     owner       =&gt; $sensuclassic::user,
