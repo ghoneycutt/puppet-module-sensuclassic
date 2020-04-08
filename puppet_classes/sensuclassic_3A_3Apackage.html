@@ -6,15 +6,15 @@
 <title>
   Puppet Class: sensuclassic::package
   
-    &mdash; Documentation by YARD 0.9.20
+    &mdash; Documentation by YARD 0.9.24
   
 </title>
 
-  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+  <link rel="stylesheet" href="../css/style.css" type="text/css" />
 
-  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+  <link rel="stylesheet" href="../css/common.css" type="text/css" />
 
-<script type="text/javascript" charset="utf-8">
+<script type="text/javascript">
   pathId = "puppet_classes::sensuclassic::package";
   relpath = '../';
 </script>
@@ -334,6 +334,7 @@ ruby, is not recommended.</p>
     </li>
   
 </ul>
+
 
 
 </div><div class="method_details_list">
@@ -676,7 +677,7 @@ class sensuclassic::package (
 
       remote_file { $pkg_source:
         ensure =&gt; present,
-        source =&gt; &quot;https://repositories.sensuapp.org/osx/${::macosx_productversion_major}/x86_64/sensu-${pkg_version}.dmg&quot;,
+        source =&gt; &quot;https://eol-repositories.sensuapp.org/osx/${::macosx_productversion_major}/x86_64/sensu-${pkg_version}.dmg&quot;,
       }
     }
 

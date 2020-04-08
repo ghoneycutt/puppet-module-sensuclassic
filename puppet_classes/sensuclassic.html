@@ -6,15 +6,15 @@
 <title>
   Puppet Class: sensuclassic
   
-    &mdash; Documentation by YARD 0.9.20
+    &mdash; Documentation by YARD 0.9.24
   
 </title>
 
-  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+  <link rel="stylesheet" href="../css/style.css" type="text/css" />
 
-  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+  <link rel="stylesheet" href="../css/common.css" type="text/css" />
 
-<script type="text/javascript" charset="utf-8">
+<script type="text/javascript">
   pathId = "puppet_classes::sensuclassic";
   relpath = '../';
 </script>
@@ -1995,7 +1995,7 @@ keep on Windows OS family. keepFiles in sensu-client.xml.</p>
 package source URL from windows_repo_prefix and os major release fact.
 This parameter is intended to allow the end user to override the source URL
 used to install the Windows package. For example:
-<code>&quot;https://repositories.sensuapp.org/msi/2012r2/sensu-0.29.0-11-x64.msi&quot;</code></p>
+<code>&quot;https://eol-repositories.sensuapp.org/msi/2012r2/sensu-0.29.0-11-x64.msi&quot;</code></p>
 </div>
       
     </li>
@@ -2053,7 +2053,7 @@ the chocolatey windows package provider.</p>
         &mdash;
         <div class='inline'><p>The package name used to identify the package
 filename. Defaults to <code>&#39;sensu&#39;</code> which matches the MSI filename published at
-<code>https://repositories.sensuapp.org/msi</code>. Note, this is distinct from the
+<code>https://eol-repositories.sensuapp.org/msi</code>. Note, this is distinct from the
 windows_package_title, which is used to identify the package name as
 displayed in Add/Remove programs in Windows.</p>
 </div>
@@ -2483,7 +2483,7 @@ Note: This has effect only on Sensu Enterprise.</p>
         <span class='type'>(<tt>Optional[String]</tt>)</span>
       
       
-        <em class="default">(defaults to: <tt>&#39;https://repositories.sensuapp.org/msi&#39;</tt>)</em>
+        <em class="default">(defaults to: <tt>&#39;https://eol-repositories.sensuapp.org/msi&#39;</tt>)</em>
       
       
     </li>
@@ -2515,6 +2515,7 @@ Note: This has effect only on Sensu Enterprise.</p>
     </li>
   
 </ul>
+
 
 
 </div><div class="method_details_list">
@@ -3024,7 +3025,7 @@ class sensuclassic (
   Optional[String] $deregister_handler = undef,
   Optional[String] $package_checksum = undef,
   Optional[String] $windows_pkg_url = undef,
-  Optional[String] $windows_repo_prefix = &#39;https://repositories.sensuapp.org/msi&#39;,
+  Optional[String] $windows_repo_prefix = &#39;https://eol-repositories.sensuapp.org/msi&#39;,
   Boolean $windows_logrotate = false,
   Variant[Integer,Pattern[/^(\d+)$/]] $windows_log_number = 10,
   Variant[Integer,Pattern[/^(\d+)$/]] $windows_log_size = 10240,
