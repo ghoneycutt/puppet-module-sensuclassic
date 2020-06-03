@@ -1501,7 +1501,7 @@ Example value: { &#39;install_path&#39; =&gt; &#39;/other/path&#39; }</p>
         <span class='name'>purge</span>
       
       
-        <span class='type'>(<tt>Variant[Boolean,Hash]</tt>)</span>
+        <span class='type'>(<tt>Variant[Boolean,Hash[Enum['plugins','config','handlers','extensions','mutators'],Boolean]]</tt>)</span>
       
       
         <em class="default">(defaults to: <tt>false</tt>)</em>
@@ -2887,8 +2887,7 @@ Note: This has effect only on Sensu Enterprise.</p>
 710
 711
 712
-713
-714</pre>
+713</pre>
       </td>
       <td>
         <pre class="code"><span class="info file"># File 'manifests/init.pp', line 351</span>
@@ -2992,7 +2991,7 @@ class sensuclassic (
   Variant[String,Array,Hash] $plugins = [],
   Hash $plugins_defaults = {},
   Optional[String] $plugins_dir = undef,
-  Variant[Boolean,Hash] $purge = false,
+  Variant[Boolean,Hash[Enum[&#39;plugins&#39;,&#39;config&#39;,&#39;handlers&#39;,&#39;extensions&#39;,&#39;mutators&#39;],Boolean]] $purge = false,
   Boolean $purge_config = false,
   Boolean $purge_plugins_dir = false,
   Boolean $use_embedded_ruby = true,
@@ -3173,7 +3172,6 @@ class sensuclassic (
     # Default anything not specified to false
     $default_purge_hash = { plugins =&gt; false, config =&gt; false, handlers =&gt; false, extensions =&gt; false, mutators =&gt; false }
     $full_purge_hash = merge($default_purge_hash, $purge)
-    validate_bool($full_purge_hash[&#39;plugins&#39;], $full_purge_hash[&#39;config&#39;], $full_purge_hash[&#39;handlers&#39;], $full_purge_hash[&#39;extensions&#39;], $full_purge_hash[&#39;mutators&#39;])
     # Check that all keys are valid
     $invalid_keys = difference(keys($purge), keys($default_purge_hash))
     if !empty($invalid_keys) {
