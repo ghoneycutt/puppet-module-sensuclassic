@@ -1928,6 +1928,40 @@ Example value: { &#39;negate&#39; =&gt; true }</p>
   
     <li>
       
+        <span class='name'>package_proxy_host</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Package proxy host. Currently only used applies to Windows not using chocolatey.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>package_proxy_port</span>
+      
+      
+        <span class='type'>(<tt>Optional[Stdlib::Port]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Package proxy port. Currently only used applies to Windows not using chocolatey.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
         <span class='name'>windows_logrotate</span>
       
       
@@ -2525,12 +2559,6 @@ Note: This has effect only on Sensu Enterprise.</p>
         <pre class="lines">
 
 
-351
-352
-353
-354
-355
-356
 357
 358
 359
@@ -2887,10 +2915,18 @@ Note: This has effect only on Sensu Enterprise.</p>
 710
 711
 712
-713</pre>
+713
+714
+715
+716
+717
+718
+719
+720
+721</pre>
       </td>
       <td>
-        <pre class="code"><span class="info file"># File 'manifests/init.pp', line 351</span>
+        <pre class="code"><span class="info file"># File 'manifests/init.pp', line 357</span>
 
 class sensuclassic (
   Pattern[/^absent$/, /^installed$/, /^latest$/, /^present$/, /^[\d\.\-el]+$/] $version = &#39;installed&#39;,
@@ -3023,6 +3059,8 @@ class sensuclassic (
   Boolean $deregister_on_stop = false,
   Optional[String] $deregister_handler = undef,
   Optional[String] $package_checksum = undef,
+  Optional[String] $package_proxy_host = undef,
+  Optional[Stdlib::Port] $package_proxy_port = undef,
   Optional[String] $windows_pkg_url = undef,
   Optional[String] $windows_repo_prefix = &#39;https://eol-repositories.sensuapp.org/msi&#39;,
   Boolean $windows_logrotate = false,

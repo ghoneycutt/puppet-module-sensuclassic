@@ -262,6 +262,40 @@ Example value: [{ &#39;-p&#39; =&gt; &#39;<a href="http://user:pass@myproxy.comp
       
     </li>
   
+    <li>
+      
+        <span class='name'>pkg_proxy_host</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$sensuclassic::package_proxy_host</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The proxy host used to download the plugin when <code>type</code> is <code>url</code></p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>pkg_proxy_port</span>
+      
+      
+        <span class='type'>(<tt>Optional[Stdlib::Port]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$sensuclassic::package_proxy_port</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The proxy port used to download the plugin when <code>type</code> is <code>url</code></p>
+</div>
+      
+    </li>
+  
 </ul>
 
 
@@ -273,12 +307,6 @@ Example value: [{ &#39;-p&#39; =&gt; &#39;<a href="http://user:pass@myproxy.comp
         <pre class="lines">
 
 
-32
-33
-34
-35
-36
-37
 38
 39
 40
@@ -376,10 +404,20 @@ Example value: [{ &#39;-p&#39; =&gt; &#39;<a href="http://user:pass@myproxy.comp
 132
 133
 134
-135</pre>
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145</pre>
       </td>
       <td>
-        <pre class="code"><span class="info file"># File 'manifests/plugin.pp', line 32</span>
+        <pre class="code"><span class="info file"># File 'manifests/plugin.pp', line 38</span>
 
 define sensuclassic::plugin (
   Enum[&#39;file&#39;,&#39;url&#39;,&#39;package&#39;,&#39;directory&#39;] $type = &#39;file&#39;,
@@ -395,6 +433,8 @@ define sensuclassic::plugin (
   Optional[String] $pkg_checksum = undef,
   Boolean $nocheckcertificate  = false,
   Any $gem_install_options = $sensuclassic::gem_install_options,
+  Optional[String] $pkg_proxy_host = $sensuclassic::package_proxy_host,
+  Optional[Stdlib::Port] $pkg_proxy_port = $sensuclassic::package_proxy_port,
 ) {
 
   File {
@@ -439,11 +479,13 @@ define sensuclassic::plugin (
       }
 
       remote_file { $name:
-        ensure   =&gt; present,
-        path     =&gt; &quot;${install_path}/${filename}&quot;,
-        source   =&gt; $name,
-        checksum =&gt; $pkg_checksum,
-        require  =&gt; File[$install_path],
+        ensure     =&gt; present,
+        path       =&gt; &quot;${install_path}/${filename}&quot;,
+        source     =&gt; $name,
+        checksum   =&gt; $pkg_checksum,
+        proxy_host =&gt; $pkg_proxy_host,
+        proxy_port =&gt; $pkg_proxy_port,
+        require    =&gt; File[$install_path],
       }
 
       file { &quot;${install_path}/${filename}&quot;:

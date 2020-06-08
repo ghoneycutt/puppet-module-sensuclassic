@@ -644,7 +644,9 @@ ruby, is not recommended.</p>
 338
 339
 340
-341</pre>
+341
+342
+343</pre>
       </td>
       <td>
         <pre class="code"><span class="info file"># File 'manifests/package.pp', line 41</span>
@@ -769,10 +771,12 @@ class sensuclassic::package (
 
         # path matches Package[sensu] { source =&gt; $pkg_source }
         remote_file { $pkg_title:
-          ensure   =&gt; present,
-          path     =&gt; $pkg_source,
-          source   =&gt; $pkg_url,
-          checksum =&gt; $sensuclassic::package_checksum,
+          ensure     =&gt; present,
+          path       =&gt; $pkg_source,
+          source     =&gt; $pkg_url,
+          checksum   =&gt; $sensuclassic::package_checksum,
+          proxy_host =&gt; $sensuclassic::package_proxy_host,
+          proxy_port =&gt; $sensuclassic::package_proxy_port,
         }
       }
     }
