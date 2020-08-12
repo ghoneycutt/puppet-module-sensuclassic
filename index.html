@@ -6,7 +6,7 @@
 <title>
   File: README
   
-    &mdash; Documentation by YARD 0.9.24
+    &mdash; Documentation by YARD 0.9.25
   
 </title>
 
@@ -57,14 +57,14 @@
         <div class="clear"></div>
       </div>
 
-      <div id="content"><div id='filecontents'><h1>puppet-module-sensuclassic</h1>
+      <div id="content"><div id='filecontents'><h1 id="puppet-module-sensuclassic">puppet-module-sensuclassic</h1>
 
 <p>Installs and manages the open source monitoring framework <a href="http://sensuapp.org">Sensu</a>.
 <a href="https://forge.puppetlabs.com/sensu/sensu"><img src="http://img.shields.io/puppetforge/v/sensu/sensu.svg" alt="Puppet Forge"></a></p>
 
 <p>Please note, that this is a <strong>Partner Supported</strong> module, which means that technical customer support for this module is solely provided by Sensu. Puppet does not provide support for any <strong>Partner Supported</strong> modules. Technical support for this module is provided by Sensu at <a href="https://sensuapp.org/support">https://sensuapp.org/support</a>.</p>
 
-<h2>Tested with Travis CI</h2>
+<h2 id="tested-with-travis-ci">Tested with Travis CI</h2>
 
 <p><a href="https://travis-ci.org/sensu/puppet-module-sensuclassic"><img src="https://travis-ci.org/sensu/puppet-module-sensuclassic.png" alt="Build Status"></a></p>
 
@@ -73,11 +73,11 @@ using the ruby that is packaged with the AIO (all-in-one installer). See
 <code>.travis.yml</code> for an exact matrix. The module aims to support the latest
 major release of Puppet and the prior major release.</p>
 
-<h2>Documented with Puppet Strings</h2>
+<h2 id="documented-with-puppet-strings">Documented with Puppet Strings</h2>
 
 <p><a href="http://sensu.github.io/puppet-module-sensuclassic/">Puppet Strings documentation</a></p>
 
-<h2>Compatibility - supported sensu versions</h2>
+<h2 id="compatibility-supported-sensu-versions">Compatibility - supported sensu versions</h2>
 
 <p>If not explicitly stated it should always support the latest Sensu release.
 Please log an issue if you identify any incompatibilities.</p>
@@ -106,17 +106,17 @@ Please log an issue if you identify any incompatibilities.</p>
 </tr>
 </tbody></table>
 
-<h2>Upgrade note</h2>
+<h2 id="upgrade-note">Upgrade note</h2>
 
 <p>Versions prior to 1.0.0 are incompatible with previous versions of the
 sensuclassic module.</p>
 
-<h2>Installation</h2>
+<h2 id="installation">Installation</h2>
 
 <pre class="code bash"><code class="bash">puppet module install sensu/sensuclassic
 </code></pre>
 
-<h2>Prerequisites</h2>
+<h2 id="prerequisites">Prerequisites</h2>
 
 <ul>
 <li>Redis server and connectivity to a Redis database</li>
@@ -124,7 +124,7 @@ sensuclassic module.</p>
 <li>Ruby JSON library or gem</li>
 </ul>
 
-<h3>Dependencies</h3>
+<h3 id="dependencies">Dependencies</h3>
 
 <p>See <code>metadata.json</code> for details.</p>
 
@@ -169,7 +169,7 @@ or gem on all your nodes.</p>
 <pre class="code bash"><code class="bash">sudo apt-get install ruby-json
 </code></pre>
 
-<h2>Quick start</h2>
+<h2 id="quick-start">Quick start</h2>
 
 <p>Before this Puppet module can be used, the following items must be configured on the server.</p>
 
@@ -209,9 +209,9 @@ directory</a> and
 <a href="https://github.com/sensu/puppet-module-sensuclassic/blob/master/Vagrantfile">Vagrantfile</a>
 for examples on setting up the prerequisites.</p>
 
-<h2>Basic example</h2>
+<h2 id="basic-example">Basic example</h2>
 
-<h3>Sensu server</h3>
+<h3 id="sensu-server">Sensu server</h3>
 
 <pre class="code puppet"><code class="puppet">node &#39;sensu-server.foo.com&#39; {
   class { &#39;sensuclassic&#39;:
@@ -240,7 +240,7 @@ for examples on setting up the prerequisites.</p>
 }
 </code></pre>
 
-<h3>Sensu Enterprise Server</h3>
+<h3 id="sensu-enterprise-server">Sensu Enterprise Server</h3>
 
 <p>With <a href="https://sensuapp.org/enterprise">Sensu Enterprise</a> additional
 functionality is available, for example <a href="https://sensuapp.org/docs/0.29/enterprise/contact-routing.html">Contact
@@ -304,7 +304,7 @@ Routing</a></p>
 }
 </code></pre>
 
-<h3>Sensu client</h3>
+<h3 id="sensu-client">Sensu client</h3>
 
 <pre class="code puppet"><code class="puppet">node &#39;sensu-client.foo.com&#39; {
    class { &#39;sensuclassic&#39;:
@@ -315,9 +315,9 @@ Routing</a></p>
 }
 </code></pre>
 
-<h3>Facts</h3>
+<h3 id="facts">Facts</h3>
 
-<h4><code>sensuclassic_version</code></h4>
+<h4 id="sensuclassic_version"><code>sensuclassic_version</code></h4>
 
 <p>The <code>sensuclassic_version</code> fact returns the Sensu Client version returned by <code>C:\opt\sensu\embedded\bin\sensu-client.bat</code>
 for Windows systems and the value returned by <code>/opt/sensu/embedded/bin/sensu-client</code> for non-Windows.</p>
@@ -326,13 +326,13 @@ for Windows systems and the value returned by <code>/opt/sensu/embedded/bin/sens
 0.23.3
 </code></pre>
 
-<h2>Advanced example using Hiera</h2>
+<h2 id="advanced-example-using-hiera">Advanced example using Hiera</h2>
 
 <p>This example includes the <code>sensuclassic</code> class as part of a base class or role
 and configures Sensu on each individual node via
 <a href="http://docs.puppetlabs.com/#hierahiera1">Hiera</a>.</p>
 
-<h3>hiera.yaml</h3>
+<h3 id="hiera-yaml">hiera.yaml</h3>
 
 <pre class="code yaml"><code class="yaml">---
 :hierarchy:
@@ -345,7 +345,7 @@ and configures Sensu on each individual node via
   :datadir: &#39;/etc/puppet/%{environment}/modules/hieradata&#39;
 </code></pre>
 
-<h3>common.yaml</h3>
+<h3 id="common-yaml">common.yaml</h3>
 
 <pre class="code yaml"><code class="yaml">sensuclassic::install_repo: false
 sensuclassic::purge:
@@ -355,7 +355,7 @@ sensuclassic::rabbitmq_password: password
 sensuclassic::rabbitmq_port: 5672
 </code></pre>
 
-<h3>sensu-server.foo.com.yaml</h3>
+<h3 id="sensu-server-foo-com-yaml">sensu-server.foo.com.yaml</h3>
 
 <pre class="code yaml"><code class="yaml">sensuclassic::server: true
 </code></pre>
@@ -373,7 +373,7 @@ sensuclassic::rabbitmq_port: 5672
 }
 </code></pre>
 
-<h3>sensu-client.foo.com.yaml</h3>
+<h3 id="sensu-client-foo-com-yaml">sensu-client.foo.com.yaml</h3>
 
 <pre class="code yaml"><code class="yaml">---
 sensuclassic::subscriptions:
@@ -422,7 +422,7 @@ classes:
     - sensuclassic
 </code></pre>
 
-<h2>Safe Mode checks</h2>
+<h2 id="safe-mode-checks">Safe Mode checks</h2>
 
 <p>By default Sensu clients will execute whatever check messages are on the
 queue. This is potentially a large security hole.</p>
@@ -434,7 +434,7 @@ on the server as well.</p>
 
 <p>A usage example is shown below.</p>
 
-<h3>Sensu server</h3>
+<h3 id="sensu-server">Sensu server</h3>
 
 <p>Each component of Sensu can be controlled separately. The server components
 are managed with the server, and API parameters.</p>
@@ -486,7 +486,7 @@ the sensuclassic::plugin define:</p>
 }
 </code></pre>
 
-<h3>Sensu client</h3>
+<h3 id="sensu-client">Sensu client</h3>
 
 <pre class="code puppet"><code class="puppet">node &#39;sensu-client.foo.com&#39; {
   class { &#39;sensuclassic&#39;:
@@ -502,7 +502,7 @@ the sensuclassic::plugin define:</p>
 }
 </code></pre>
 
-<h2>Using custom variables in check definitions</h2>
+<h2 id="using-custom-variables-in-check-definitions">Using custom variables in check definitions</h2>
 
 <pre class="code puppet"><code class="puppet">sensuclassic::check{ &#39;check_file_test&#39;:
   command      =&gt; &#39;/usr/local/bin/check_file_test.sh&#39;,
@@ -542,7 +542,7 @@ the sensuclassic::plugin define:</p>
 }
 </code></pre>
 
-<h2>Using hooks in check definitions</h2>
+<h2 id="using-hooks-in-check-definitions">Using hooks in check definitions</h2>
 
 <p><a href="https://sensuapp.org/docs/latest/reference/checks.html#check-hooks">Hooks</a> are commands run by the Sensu client in response
 to the result of check command execution. They have been introduced in Sensu 1.1.</p>
@@ -561,7 +561,7 @@ to the result of check command execution. They have been introduced in Sensu 1.1
 }
 </code></pre>
 
-<h2>Writing custom configuration files</h2>
+<h2 id="writing-custom-configuration-files">Writing custom configuration files</h2>
 
 <p>You can also use the <code>sensuclassic::write_json</code> defined resource type to write custom
 json config files:</p>
@@ -583,7 +583,7 @@ sensuclassic::write_json { &#39;/etc/sensu/conf.d/contacts.json&#39;:
 }
 </code></pre>
 
-<h2>Handler configuration</h2>
+<h2 id="handler-configuration">Handler configuration</h2>
 
 <pre class="code puppet"><code class="puppet">sensuclassic::handler {
   &#39;handler_foobar&#39;:
@@ -616,7 +616,7 @@ sensuclassic::write_json { &#39;/etc/sensu/conf.d/contacts.json&#39;:
 }
 </code></pre>
 
-<h2>Extension configuration</h2>
+<h2 id="extension-configuration">Extension configuration</h2>
 
 <pre class="code puppet"><code class="puppet">sensuclassic::extension {
   &#39;an_extension&#39;:
@@ -637,7 +637,7 @@ the following configuration definition for Sensu:</p>
 }
 </code></pre>
 
-<h3>Disable Service Management</h3>
+<h3 id="disable-service-management">Disable Service Management</h3>
 
 <p>If you&#39;d prefer to use an external service management tool such as
 DaemonTools or SupervisorD, you can disable the module&#39;s internal
@@ -646,7 +646,7 @@ service management functions like so:</p>
 <pre class="code yaml"><code class="yaml">sensuclassic::manage_services: false
 </code></pre>
 
-<h2>Purging Configuration</h2>
+<h2 id="purging-configuration">Purging Configuration</h2>
 
 <p>By default, any sensu plugins, extensions, handlers, mutators, and
 configuration not defined using this puppet module will be left on
@@ -670,7 +670,7 @@ to be deleted. Keys which are not specified will not be purged:</p>
   plugins: true
 </code></pre>
 
-<h2>Including Sensu monitoring in other modules</h2>
+<h2 id="including-sensu-monitoring-in-other-modules">Including Sensu monitoring in other modules</h2>
 
 <p>There are a few different patterns that can be used to include Sensu
 monitoring into other modules. One pattern creates a new class that is
@@ -738,7 +738,7 @@ case $monitoring {
 }
 </code></pre>
 
-<h2>Installing Gems into the embedded ruby</h2>
+<h2 id="installing-gems-into-the-embedded-ruby">Installing Gems into the embedded ruby</h2>
 
 <p>If you are using the embedded ruby that ships with Sensu, you can install gems
 by using the <code>sensuclassic_gem</code> package provider:</p>
@@ -749,7 +749,7 @@ by using the <code>sensuclassic_gem</code> package provider:</p>
 }
 </code></pre>
 
-<h2>Sensitive String Redaction</h2>
+<h2 id="sensitive-string-redaction">Sensitive String Redaction</h2>
 
 <p>Redaction of passwords is supported by this module. To enable it, pass a value to <code>sensuclassic::redact</code>
 and set some password values with <code>sensuclassic::client_custom</code></p>
@@ -785,9 +785,9 @@ sensuclassic::client_custom:
 }
 </code></pre>
 
-<h2>Dashboards</h2>
+<h2 id="dashboards">Dashboards</h2>
 
-<h3>Sensu Enterprise Dashboard</h3>
+<h3 id="sensu-enterprise-dashboard">Sensu Enterprise Dashboard</h3>
 
 <p>The <a href="https://sensuapp.org/docs/latest/platforms/sensu-on-rhel-centos.html#install-sensu-enterprise-repository">Sensu Enterprise
 Dashboard</a>
@@ -806,7 +806,7 @@ example:</p>
 <code>SE_USER</code> and <code>SE_PASS</code> as described at <a href="https://sensuapp.org/docs/latest/platforms/sensu-on-rhel-centos.html#install-sensu-enterprise-repository">Install the Sensu Enterprise repository
 </a></p>
 
-<h3>Enterprise Dashboard API</h3>
+<h3 id="enterprise-dashboard-api">Enterprise Dashboard API</h3>
 
 <p>The API to the enterprise dashboard is managed using the
 <code>sensuclassic::enterprise::dashboard::api</code> defined type.  This defined type is a
@@ -839,7 +839,7 @@ example:</p>
 <p>This will ensure <code>/etc/sensu/dashboard.json</code> contains only
 <code>sensuclassic::enterprise::dashboard::api</code> resources managed by Puppet.</p>
 
-<h3>Community</h3>
+<h3 id="community">Community</h3>
 
 <p>The following puppet modules exist for managing dashboards</p>
 
@@ -847,7 +847,7 @@ example:</p>
 <li><a href="https://github.com/pauloconnor/pauloconnor-uchiwa">uchiwa</a></li>
 </ul>
 
-<h2>License</h2>
+<h2 id="license">License</h2>
 
 <p>See LICENSE file.</p>
 </div></div>
