@@ -364,7 +364,9 @@ keep on Windows OS family. keepFiles in sensu-client.xml.</p>
 166
 167
 168
-169</pre>
+169
+170
+171</pre>
       </td>
       <td>
         <pre class="code"><span class="info file"># File 'manifests/client.pp', line 17</span>
@@ -386,10 +388,12 @@ class sensuclassic::client (
       true: {
         $service_ensure = $client_service_ensure
         $service_enable = $client_service_enable
+        $before_install_service = Exec[&#39;install-sensu-client-service&#39;]
       }
       default: {
         $service_ensure = &#39;stopped&#39;
         $service_enable = false
+        $before_install_service = undef
       }
     }
     case $::osfamily {
@@ -407,7 +411,7 @@ class sensuclassic::client (
             dsc_ensure   =&gt; present,
             dsc_policy   =&gt; &#39;Log_on_as_a_service&#39;,
             dsc_identity =&gt; $sensuclassic::windows_service_user[&#39;user&#39;],
-            before       =&gt; Exec[&#39;install-sensu-client-service&#39;],
+            before       =&gt; $before_install_service,
           }
 
           acl { &#39;C:/opt/sensu&#39;:
@@ -418,7 +422,7 @@ class sensuclassic::client (
                 &#39;rights&#39;   =&gt; [&#39;full&#39;],
               },
             ],
-            before      =&gt; Exec[&#39;install-sensu-client-service&#39;],
+            before      =&gt; $before_install_service,
           }
 
           $service_user = $sensuclassic::windows_service_user[&#39;user&#39;]
