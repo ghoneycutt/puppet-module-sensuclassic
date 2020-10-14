@@ -154,7 +154,13 @@
 62
 63
 64
-65</pre>
+65
+66
+67
+68
+69
+70
+71</pre>
       </td>
       <td>
         <pre class="code"><span class="info file"># File 'manifests/repo/yum.pp', line 5</span>
@@ -165,12 +171,18 @@ class sensuclassic::repo::yum {
     if $sensuclassic::repo_source {
       $url = $sensuclassic::repo_source
     } else {
+      $major = $facts.dig(&#39;os&#39;, &#39;release&#39;, &#39;major&#39;)
+      $family = $facts.dig(&#39;os&#39;, &#39;family&#39;)
       if $::operatingsystem == &#39;Amazon&#39; {
-        if $facts[&#39;os&#39;][&#39;release&#39;][&#39;major&#39;] =~ /^201\d$/ {
+        # Match all versions like 2018.2
+        if $major =~ /^201\d$/ {
           $releasever = &#39;6&#39;
         } else {
           $releasever = &#39;7&#39;
         }
+      # el8 packages do not exist, so use el7 packages
+      } elsif $family == &#39;RedHat&#39; and $major == &#39;8&#39; {
+        $releasever = &#39;7&#39;
       } else {
         $releasever = &#39;$releasever&#39;
       }
