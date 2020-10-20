@@ -192,11 +192,11 @@ class sensuclassic::repo::yum {
       }
     }
 
-    yumrepo { &#39;sensu&#39;:
+    yumrepo { &#39;sensuclassic&#39;:
       enabled  =&gt; 1,
       baseurl  =&gt; $url,
       gpgcheck =&gt; 0,
-      name     =&gt; &#39;sensu&#39;,
+      name     =&gt; &#39;sensuclassic&#39;,
       descr    =&gt; &#39;sensu&#39;,
       before   =&gt; Package[$sensuclassic::package::pkg_title],
     }

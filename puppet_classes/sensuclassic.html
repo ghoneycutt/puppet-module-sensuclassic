@@ -723,6 +723,23 @@ according to the underlying OS</p>
   
     <li>
       
+        <span class='name'>ssl_dir</span>
+      
+      
+        <span class='type'>(<tt>Optional[Stdlib::Absolutepath]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The path to RabbitMQ SSL directory. Defaults to $etc_dir/ssl.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
         <span class='name'>rabbitmq_ssl</span>
       
       
@@ -2559,8 +2576,6 @@ Note: This has effect only on Sensu Enterprise.</p>
         <pre class="lines">
 
 
-357
-358
 359
 360
 361
@@ -2923,10 +2938,13 @@ Note: This has effect only on Sensu Enterprise.</p>
 718
 719
 720
-721</pre>
+721
+722
+723
+724</pre>
       </td>
       <td>
-        <pre class="code"><span class="info file"># File 'manifests/init.pp', line 357</span>
+        <pre class="code"><span class="info file"># File 'manifests/init.pp', line 359</span>
 
 class sensuclassic (
   Pattern[/^absent$/, /^installed$/, /^latest$/, /^present$/, /^[\d\.\-el]+$/] $version = &#39;installed&#39;,
@@ -2982,6 +3000,7 @@ class sensuclassic (
   Optional[String] $rabbitmq_user = undef,
   Optional[String] $rabbitmq_password = undef,
   Optional[String] $rabbitmq_vhost = undef,
+  Optional[Stdlib::Absolutepath] $ssl_dir = undef,
   Optional[Boolean] $rabbitmq_ssl = undef,
   Optional[String] $rabbitmq_ssl_private_key = undef,
   Optional[String] $rabbitmq_ssl_cert_chain = undef,

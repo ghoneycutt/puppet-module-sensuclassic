@@ -108,6 +108,17 @@ Please log an issue if you identify any incompatibilities.</p>
 
 <h2 id="upgrade-note">Upgrade note</h2>
 
+<p>Version 3.8.0 of this module renames <code>Yumrepo[sensu]</code> to <code>Yumrepo[sensuclassic]</code> and <code>Apt::Source[sensu]</code> to <code>Apt::Source[sensuclassic]</code>.
+For Yum based systems if you are not purging unmanaged Yumrepo resources and not intending to run the Sensu Go module then it&#39;s recommended to do the following in a profile class:</p>
+
+<pre class="code pupppet"><code class="pupppet">yumrepo { &#39;sensu&#39;: ensure =&gt; &#39;absent&#39; }
+</code></pre>
+
+<p>For Apt based systems not using the Sensu Go puppet module it&#39;s recommended to add the following to a profile class:</p>
+
+<pre class="code puppet"><code class="puppet">apt::source { &#39;sensu&#39;: ensure =&gt; &#39;absent&#39; }
+</code></pre>
+
 <p>Versions prior to 1.0.0 are incompatible with previous versions of the
 sensuclassic module.</p>
 
@@ -312,6 +323,17 @@ Routing</a></p>
      rabbitmq_host      =&gt; &#39;sensu-server.foo.com&#39;,
      subscriptions      =&gt; &#39;sensu-test&#39;,
    }
+}
+</code></pre>
+
+<h3 id="sensu-client-with-sensu-go-module">Sensu client with Sensu Go module</h3>
+
+<p>The following is an example of using the <a href="https://github.com/sensu/sensu-puppet">Sensu Go Puppet module</a> on the same host using this sensuclassic module.</p>
+
+<pre class="code puppet"><code class="puppet">include sensu::agent
+class { &#39;sensuclassic&#39;:
+  manage_user =&gt; false,
+  ssl_dir     =&gt; &#39;/etc/sensu/ssl-classic&#39;,
 }
 </code></pre>
 

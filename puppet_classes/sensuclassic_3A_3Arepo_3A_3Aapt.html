@@ -193,7 +193,7 @@ class sensuclassic::repo::apt {
       $release = $sensuclassic::repo_release
     }
 
-    apt::source { &#39;sensu&#39;:
+    apt::source { &#39;sensuclassic&#39;:
       ensure   =&gt; $ensure,
       location =&gt; $url,
       release  =&gt; $release,
